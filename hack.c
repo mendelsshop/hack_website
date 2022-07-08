@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h> 
 #define BUFSIZE 128
 typedef char * string;
 struct results {
@@ -50,9 +51,16 @@ struct results webCheck(char url[BUFSIZE])
 
 int main(int argc, string argv[])
 {
+	
 	if (argc != 2)
 	{
 		printf("Usage: %s <website-url>\n", argv[0]);
+		return 1;
+	}
+	if (getuid()) {
+		printf("This program requires root acces!\n");
+		printf("Try running this program with sudo.\n");
+		printf("Like: sudo %s %s\n", argv[0], argv[1]);
 		return 1;
 	}
 	char url[BUFSIZE];
