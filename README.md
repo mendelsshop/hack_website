@@ -24,3 +24,4 @@ A while ago there were a bunch people who wanted to "heckers" so they installed 
 ## future improvements:
 - check if the the second argument has a . if not exit with a message saying that the website needs to have a . in the name
 - have a prompt if we succeedd to open the website in the browser to show that its down
+- have it aviable via package managers
