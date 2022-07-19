@@ -13,6 +13,7 @@ struct results webCheck(char url[BUFSIZE])
 {
 	char command[BUFSIZE];
 	strcpy(command, "curl -s -I -L -w \"end: %{http_code} %{url_effective}\n\" ");
+
 	FILE *fp;
 	char buf[BUFSIZE];
 	int status;
@@ -22,6 +23,7 @@ struct results webCheck(char url[BUFSIZE])
 		printf("Failed to run command\n" );
 		exit(1);
 	}
+	printf("checking website\n");
 	while (fgets(buf, BUFSIZE, fp) != NULL) {
 		if (strncmp("end: ", buf, 5) == 0) {
 			strcpy(url, strtok(buf, " "));
@@ -51,6 +53,8 @@ struct results webCheck(char url[BUFSIZE])
 
 int main(int argc, string argv[])
 {
+	system("clear");
+	printf("\x1b[40;38;5;34m");
 	
 	if (argc != 2)
 	{
@@ -106,11 +110,15 @@ int main(int argc, string argv[])
 		fclose(fp1);
 
         remove("temp.txt");
+		
+		printf("%s\n", result.urls);
+
 
 	}
 	else
 	{
 		printf("%s is down!\n", result.urls);
 	}
+	printf("\x1b[0m"); // reset color
 	return 0;
 }
